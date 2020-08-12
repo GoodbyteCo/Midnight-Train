@@ -114,13 +114,25 @@ layout: main
 			justify-content: space-between;
 			text-decoration: none;
 			color: #009a50;
-			background: #a4dbbf;
+			/* background: #a4dbbf; */
 			/* background: #2b5a38; */
 			/* opacity: 0.15; */
 			border-radius: 30px;
 			padding: 20px;
 			margin-top: 50px;
 			/* box-shadow: 0 3px 6px 1.5px var(--black) */
+			/* box-shadow: 8px 8px 0 var(--grey-00);
+			border: 3px solid var(--grey-00); */
+			background-image: url(/assets/images/squiggle.svg);
+			background-size: auto 3px;
+    		background-repeat: repeat-x;
+    		background-position: 100% 100%;
+		}
+
+		.card:hover
+		{
+			background-image: url(/assets/images/squigglemoving.svg);
+
 		}
 		#game-list
 		{
@@ -160,6 +172,11 @@ layout: main
 			font-family: 'title';
 			font-weight: bold;
 		}
+
+		.card p
+		{
+			font-weight: 600;
+		}
 	</style>
 </head>
 <body>
@@ -197,7 +214,7 @@ layout: main
 			</a>
 			{% endfor %}
 
-		<!-- <a href="https://google.com" class="card">
+		<a href="https://google.com" class="card">
 			<span>
 			<h2>Silverscreen</h2>
 			<p>Silverscreen is a a game and system with the goal of creating games that feel like films</p>
@@ -232,7 +249,7 @@ layout: main
 			<span class="arrow">
 				<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path stroke="#009a50" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
 			</span>
-		</a> -->
+		</a>
 		</section>	
 	
 		<footer>Goodbyte &copy; 2020</footer>
