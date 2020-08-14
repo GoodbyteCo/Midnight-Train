@@ -156,10 +156,15 @@ layout: main
 
 		#description
 		{
+			position: fixed;
+			bottom: -10px; 
+			left: 300px;
+			width: 500px;
 			margin-top: 50px;
 			text-align: center;
 			font-size: 1.15em;
 		}
+		
 		footer
 		{
 			text-align: center;
@@ -202,10 +207,49 @@ layout: main
 			position: absolute; 
             bottom: 150px; 
 		}
-		/* #hero-container-container
-		{
-			position: fixed;
-		} */
+		
+		@media (max-width: 1500px) {
+			#description
+			{
+				width: 250px;
+			}
+		}
+		@media (max-width: 1200px) {
+			article
+			{
+				padding: 0 20px;
+			}
+			#description
+			{
+				width: 250px;
+				display: none;
+			}
+			#game-list
+			{
+				padding: 0;
+			}
+		}
+		@media (max-width: 1150px) {
+			#logo
+			{
+				width: 125px;
+			}
+			#logo-over
+			{
+				left: -29px;
+			}
+		}
+		@media (max-width: 860px) {
+			#logo
+			{
+				position: unset;
+				margin: auto;
+			}
+			#container
+			{
+				display: block;
+			}
+		}
 	</style>
 </head>
 <body>
@@ -227,10 +271,11 @@ layout: main
 					  </textPath>
 					</text>
 				  </svg>
+				  <section id="description">
+					  Goodbyte Games is a byte sized games studio with a goal of creating games & systems with fluid and immersive mechanics.
+				  </section>
 			</div>
-<!-- 					<section id="description">
-						Goodbyte Games is a byte sized games studio with a goal of creating games & systems with fluid and immersive mechanics.
-					</section> -->
+
 			<div id="game-section">
 			<section id="game-list">
 				{% for post in site.categories.games %}
