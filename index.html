@@ -88,24 +88,31 @@ layout: main
 			font-family: 'text';
 		}
 
-		.logo
+		#logo
 		{
-			width: 16%;
-			margin: auto;
+			width: 30%;
+			margin-right: auto;
+			margin-left: 40px;
 			padding-top: 100px;
 			position: relative;
+			transform: translate(0px, 0px);
 		}
 		#logo-over
 		{
 			z-index: 999;
 			position: absolute;
 			display: block;
-			top: 50px;
+			top: 45px;
 			left: -40px;
 			padding: 10px;
 			width: 130%;
 			
 			
+		}
+		#container
+		{
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);			
 		}
 
 		.card
@@ -127,6 +134,7 @@ layout: main
 			background-size: auto 3px;
     		background-repeat: repeat-x;
     		background-position: 100% 100%;
+			padding-bottom: 10px;
 		}
 
 		.card:hover
@@ -138,11 +146,16 @@ layout: main
 		{
 			padding: 0 100px;
 		}
+		#game-section
+		{
+			overflow-y: scroll;	
+		}
 
 		#description
 		{
 			margin-top: 50px;
 			text-align: center;
+			font-size: 1.15em;
 		}
 		footer
 		{
@@ -177,80 +190,101 @@ layout: main
 		{
 			font-weight: 600;
 		}
+		#hero-contain
+		{
+			position: relative; 
+		}
+		#hero
+		{
+			position: absolute; 
+            bottom: 150px; 
+		}
+		/* #hero-container-container
+		{
+			position: fixed;
+		} */
 	</style>
 </head>
 <body>
 	<article>
-		<div class="logo">
-			<img src="/assets/images/GoodByteGames.svg" alt="Goodbyte Games Logo">
-			<svg id="logo-over" width="100%" height="100%" viewBox="0 0 550 450" version="1.1" xmlns="http://www.w3.org/2000/svg" overflow="auto">
-				<defs>
-			   <path id="square" d="M15 25 L 500 25 L 500 375 L 15 375 Z" stroke="black" fill="transparent" stroke-width="1"/>
-				</defs>
-				<text fill="#009a50" font-size="2em" font-familly="text" font-weight="bold">
-				  <textPath id="text-path" href="#square" startOffset="0">
-					SOMETIMES WE MAKE GAMES, WHEN WE DO THEY GO HERE
-					<!-- <animate attributeName="startOffset"
-							 from="0%" to ="100%"
-							 begin="scroll" dur="10s"
-							 repeatCount="1"/> -->
-				  </textPath>
-				</text>
-			  </svg>
-		</div>
-		<section id="description">
-			Goodbyte Games is a byte sized games studio with a goal of creating games & systems with fluid and immersive mechanics.
-		</section>
-		<section id="game-list">
-			{% for post in site.categories.games %}
-			<a href="{{ post.url }}" class="card">
+		<div id="container">
+			<div id="hero-contain">
+				<div id="hero">
+					<div id="logo">
+						<img src="/assets/images/GoodByteGames.svg" alt="Goodbyte Games Logo">
+						<svg id="logo-over" width="100%" height="100%" viewBox="0 0 550 450" version="1.1" xmlns="http://www.w3.org/2000/svg" overflow="auto">
+							<defs>
+						   <path id="square" d="M15 25 L 500 25 L 500 375 L 15 375 Z" stroke="black" fill="transparent" stroke-width="1"/>
+							</defs>
+							<text fill="#009a50" font-size="2.2em" font-familly="text" font-weight="bold">
+							  <textPath id="text-path" href="#square" startOffset="0">
+								SOMETIMES WE MAKE GAMES, WHEN WE DO THEY GO HERE
+								<!-- <animate attributeName="startOffset"
+										 from="0%" to ="100%"
+										 begin="scroll" dur="10s"
+										 repeatCount="1"/> -->
+							  </textPath>
+							</text>
+						  </svg>
+					</div>
+					<section id="description">
+						Goodbyte Games is a byte sized games studio with a goal of creating games & systems with fluid and immersive mechanics.
+					</section>
+				</div>
+			</div>
+			<div id="game-section">
+			<section id="game-list">
+				{% for post in site.categories.games %}
+				<a href="{{ post.url }}" class="card">
+					<span>
+					<h2>{{ post.title }}</h2>
+					<p>{{ post.short }}</p>
+					</span>
+					<span class="arrow">
+						<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path stroke="#009a50" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
+					</span>
+				</a>
+				{% endfor %}
+	
+			<a href="https://google.com" class="card">
 				<span>
-				<h2>{{ post.title }}</h2>
-				<p>{{ post.short }}</p>
+				<h2>Silverscreen</h2>
+				<p>Silverscreen is a a game and system with the goal of creating games that feel like films</p>
 				</span>
 				<span class="arrow">
 					<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path stroke="#009a50" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
 				</span>
 			</a>
-			{% endfor %}
-
-		<a href="https://google.com" class="card">
-			<span>
-			<h2>Silverscreen</h2>
-			<p>Silverscreen is a a game and system with the goal of creating games that feel like films</p>
-			</span>
-			<span class="arrow">
-				<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path stroke="#009a50" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
-			</span>
-		</a>
-		<a href="/games/midnight-train" class="card">
-			<span>
-			<h2>Midnight-Train</h2>
-			<p>Midnight Train is a framework for fluidly moving between game systems within a single narrative.</p>
-			</span>
-			<span class="arrow">
-				<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path stroke="#009a50" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
-			</span>
-		</a>
-		<a href="https://google.com" class="card">
-			<span>
-			<h2>Plank</h2>
-			<p>A simple, dice-less, tabletop role-playing game</p>
-			</span>
-			<span class="arrow">
-				<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path stroke="#009a50" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
-			</span>
-		</a>
-		<a href="https://google.com" class="card">
-			<span>
-			<h2>Khilh</h2>
-			<p>A game about Chanukkah and community</p>
-			</span>
-			<span class="arrow">
-				<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path stroke="#009a50" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
-			</span>
-		</a>
-		</section>	
+			<a href="/games/midnight-train" class="card">
+				<span>
+				<h2>Midnight-Train</h2>
+				<p>Midnight Train is a framework for fluidly moving between game systems within a single narrative.</p>
+				</span>
+				<span class="arrow">
+					<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path stroke="#009a50" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
+				</span>
+			</a>
+			<a href="https://google.com" class="card">
+				<span>
+				<h2>Plank</h2>
+				<p>A simple, dice-less, tabletop role-playing game</p>
+				</span>
+				<span class="arrow">
+					<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path stroke="#009a50" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
+				</span>
+			</a>
+			<a href="https://google.com" class="card">
+				<span>
+				<h2>Khilh</h2>
+				<p>A game about Chanukkah and community</p>
+				</span>
+				<span class="arrow">
+					<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path stroke="#009a50" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
+				</span>
+			</a>
+			</section>
+			</div>
+		</div>
 	
 		<footer>Goodbyte &copy; 2020</footer>
 	</article>
@@ -266,7 +300,8 @@ layout: main
 				updatePathOffset(window.scrollY * 1.5);
 			})
 		}
-
+		
+		
 		window.addEventListener('scroll', function(e) {
 			onScroll();
 		});
