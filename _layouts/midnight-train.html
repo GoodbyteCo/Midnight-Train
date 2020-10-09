@@ -27,6 +27,15 @@
 			--accent: #673bcb;
 		}
 
+		@font-face
+		{
+			font-family: "heading";
+			src: url('/assets/font/webfont.woff2') format('woff2'),
+				url('/assets/font/webfont.woff') format('woff');
+			font-weight: bold;
+			font-style: normal;
+		}
+
 		html
 		{
 			background: var(--grey-00);
@@ -341,12 +350,13 @@
 
 		h1
 		{
-			font-family: "Central Avenue";
+			font-family: "heading";
 			font-size: 6rem;
 			text-align: center;
 			margin: -30px 0 0;
 			line-height: 1;
 			font-weight: normal;
+			text-transform: uppercase
 		}
 		
 		#tagline
@@ -428,9 +438,15 @@
 			max-width: 50rem;
 			margin: 4rem auto 2rem;
 			font-size: 2.5rem;
-			font-family: "Central Avenue";
+			font-family: "heading";
 			text-transform: uppercase;
 		}
+		 h3 {
+			width: 100%;
+			max-width: 50rem;
+			margin: 0.5rem auto 0.5rem
+			font-family: "heading";
+		 }
 
 		footer
 		{
@@ -516,10 +532,10 @@
 	<nav>
 		<ul>
 			<li><a href="#frame" onclick="document.body.classList.toggle('menu-closed')">THE FRAMING DEVICE</a></li>
-			<li><a href="https://google.com">SETTING UP THE WORLD</a></li>
-			<li><a href="https://google.com">CHARACTER CREATION</a></li>
-			<li><a href="https://google.com">HOW TO START</a></li>
-			<li><a href="https://google.com">Death &amp; Finales</a></li>
+			<li><a href="#conductor" onclick="document.body.classList.toggle('menu-closed')">CREATING THE CONDUCTOR</a></li>
+			<li><a href="#character" onclick="document.body.classList.toggle('menu-closed')">CREATING A CHARACTER</a></li>
+			<li><a href="#mechanics" onclick="document.body.classList.toggle('menu-closed')">MECHANICS</a></li>
+			<li><a href="#coverting" onclick="document.body.classList.toggle('menu-closed')">CONVERTING TO GAMES</a></li>
 		</ul>
 	</nav>
 	<article onclick="document.body.className = 'menu-closed';">
