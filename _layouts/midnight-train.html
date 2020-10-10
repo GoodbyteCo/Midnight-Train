@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Midnight Train</title>
+	<meta name="author" content="Jack Guinane, Quinn Pollock"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/Midnight-Train/images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/Midnight-Train/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/Midnight-Train/images/favicon-16x16.png">
+	<link rel="manifest" href="/assets/Midnight-Train/site.webmanifest">
+	<link rel="mask-icon" href="/assets/Midnight-Train/images/safari-pinned-tab.svg" color="#673bcb">
+	<meta name="msapplication-TileColor" content="#673bcb">
+	<meta name="theme-color" content="#e9e1f9">
+	<style>
+		:root
+		{
+			--grey-00: #231a37;
+			--grey-10: #30146d;
+			--grey-20: #3d2a64;
+			--grey-30: #5b26ce;
+			--grey-40: #7d50df;
+			--grey-50: #a07fe9;
+			--grey-60: #c6b1f2;
+			--grey-70: #e9e1f9;
+			--accent: #673bcb;
+		}
+
+		@font-face
+		{
+			font-family: "heading";
+			src: url('/assets/font/webfont.woff2') format('woff2'),
+				url('/assets/font/webfont.woff') format('woff');
+			font-weight: bold;
+			font-style: normal;
+		}
+
+		html
+		{
+			background: var(--grey-00);
+			color: var(--grey-70);
+			text-rendering: optimizeSpeed; 
+			-webkit-font-smoothing: antialiased;    
+			-moz-osx-font-smoothing: grayscale;
+			-moz-font-feature-settings:"kern" 1;
+			-ms-font-feature-settings:"kern" 1;
+			-o-font-feature-settings:"kern" 1;
+			-webkit-font-feature-settings:"kern" 1;
+			font-feature-settings:"kern" 1;
+			font-kerning: normal;
+			font-family: -apple-system, BlinkMacSystemFont, 'Futura', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		}
+
+		::selection
+		{
+			background: var(--accent);
+			color: var(--grey-70);
+		}
+
+		body
+		{
+			margin: 0;
+			padding: 0;	
+		}
+
+		nav
+		{
+			display: block;
+			z-index: 99;
+			background: var(--grey-60);
+			color: var(--grey-00);
+			box-sizing: border-box;
+			max-width: 100vw;
+			min-width: 500px;
+			width: 50%;
+			padding: 100px 80px;
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			box-shadow: -20px 0px 20px 0 rgb(16 0 55 / 0.5);
+			transform: translateX(0px);
+			transition: all 0.6s cubic-bezier(0,1,.6,1), opacity 0.2s ease;
+			opacity: 1;
+		}
+
+		.menu-closed nav
+		{
+			box-shadow: -20px 0px 20px 0 transparent;
+			transform: translateX(100%);
+			transition: all 0.3s ease-in;
+			opacity: 0;
+		}
+
+		article
+		{
+			transform: scale(0.98);
+			filter: blur(2px);
+			transition: transform 0.6s cubic-bezier(0,1,.6,1), filter 0.6s cubic-bezier(0,1,.6,1);
+		}
+
+		.menu-closed article
+		{
+			transform: scale(1);
+			filter: none;
+			transition: transform 0.3s ease-in, filter 0.3s ease-in;
+		}
+
+		#menu-btn
+		{
+			position: fixed;
+			background: none;
+			border: none;
+			top: 10px;
+			right: 20px;
+			z-index: 100;
+			cursor: pointer;
+			outline: none;
+			padding: 15px 20px 0px;
+			border-radius: 12px;
+			transition: background 0.1s ease;
+		}
+
+		#menu-btn:focus, #menu-btn:focus-within
+		{
+			background: rgb(156 133 206 / 70%);
+			transition: background 0.2s ease;
+		}
+
+		.menu-closed #menu-btn:focus, .menu-closed #menu-btn:focus-within
+		{
+			background: rgb(71 49 119 / 70%);
+			transition: background 0.2s ease;
+		}
+
+		.menu-closed #menu-btn:active
+		{
+			box-shadow: inset 0px 0px 0px 2px var(--grey-00);
+		}
+		
+		#menu-btn:active
+		{
+			box-shadow: inset 0px 0px 0px 2px var(--grey-60);
+		}
+
+		#menu-text, #close-text
+		{
+			font-family: -apple-system, BlinkMacSystemFont, 'Futura', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+			font-weight: bold;
+			letter-spacing: 0.05em;
+			font-size: 14px;
+			display: block;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		#menu-text span, #close-text span
+		{
+			transition: all 0.4s cubic-bezier(.5,.2,.3,1.3);
+			display: inline-block;
+		}
+
+		#close-text span
+		{
+			opacity: 1;
+			visibility: visible;
+			pointer-events: all;
+			color: var(--grey-00);
+			transform: translateY(-16px);
+		}
+		
+		.menu-closed #close-text span
+		{
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+			transform: translateY(0px);
+		}
+
+		#menu-text span
+		{
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+			color: var(--grey-60);
+			transform: translateY(-16px);
+		}
+
+		.menu-closed #menu-text span
+		{
+			opacity: 1;
+			visibility: visible;
+			pointer-events: all;
+			transform: translateY(0px);
+		}
+
+		#menu-text span:nth-child(1), #close-text span:nth-child(1) { transition-delay: 0.00s; }
+		#menu-text span:nth-child(2), #close-text span:nth-child(2) { transition-delay: 0.05s; }
+		#menu-text span:nth-child(3), #close-text span:nth-child(3) { transition-delay: 0.10s; }
+		#menu-text span:nth-child(4), #close-text span:nth-child(4) { transition-delay: 0.15s; }
+		#menu-text span:nth-child(5), #close-text span:nth-child(5) { transition-delay: 0.20s; }
+
+		#menu-stack div
+		{
+			-webkit-transition: -webkit-transform 0.4s ease, background 0.4s ease;
+			transition: -webkit-transform 0.4s ease, background 0.4s ease;
+			-o-transition: transform 0.4s ease, background 0.4s ease;
+			transition: transform 0.4s ease, background 0.4s ease;
+			transition: transform 0.4s ease, -webkit-transform 0.4s ease, background 0.4s ease;
+			height: 2px;
+			background: var(--grey-00);
+			-webkit-transform: rotate(25deg) translateY(1px) translateX(-8px) scaleX(0.8);
+				-ms-transform: rotate(25deg) translateY(1px) translateX(-8px) scaleX(0.8);
+					transform: rotate(25deg) translateY(1px) translateX(-8px) scaleX(0.8);
+			width: 32px;
+			margin-top: 6px;
+		}
+
+		.menu-closed #menu-stack div
+		{
+			background: var(--grey-60);
+		}
+
+		#menu-btn #top-menu
+		{
+			-webkit-transform: rotate(-25deg) translateY(-1px) translateX(-8px) scaleX(0.8);
+				-ms-transform: rotate(-25deg) translateY(-1px) translateX(-8px) scaleX(0.8);
+					transform: rotate(-25deg) translateY(-1px) translateX(-8px) scaleX(0.8);
+			margin-top: 0;
+		}
+
+		#menu-btn #mid-menu
+		{
+			-webkit-transform: translateX(-2px);
+				-ms-transform: translateX(-2px);
+					transform: translateX(-2px);
+		}
+
+		.menu-closed #menu-btn #mid-menu, .menu-closed #menu-btn #bot-menu, .menu-closed #menu-btn #top-menu
+		{
+			-webkit-transform: none;
+				-ms-transform: none;
+					transform: none;
+		}
+
+		#menu-stack
+		{
+			-webkit-transition: -webkit-transform 0.4s ease;
+			transition: -webkit-transform 0.4s ease;
+			-o-transition: transform 0.4s ease;
+			transition: transform 0.4s ease;
+			transition: transform 0.4s ease, -webkit-transform 0.4s ease;
+			-webkit-transform: rotate(180deg);
+				-ms-transform: rotate(180deg);
+					transform: rotate(180deg);
+			display: inline-block;
+			margin-bottom: 12px;
+			margin-left: 12px;
+		}
+
+		.menu-closed #menu-stack 
+		{
+			-webkit-transform: rotate(0deg);
+				-ms-transform: rotate(0deg);
+					transform: rotate(0deg);
+		}
+
+		#menu-btn-text
+		{
+			display: inline-block;
+		}
+
+		nav ul, nav li, nav a
+		{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			color: inherit;
+			text-decoration: none;
+		}
+
+		nav a
+		{
+			font-family: "Central Avenue";
+			font-size: 3rem;
+			display: block;
+			transition: transform 0.6s cubic-bezier(0,1,.6,1);
+			outline: none;
+			text-transform: uppercase;
+			box-sizing: border-box;
+		}
+
+		nav a:hover, nav a:focus, nav a:focus-within
+		{
+			color: var(--accent);
+			transform: translateX(-40px);
+			width: calc(100% + 40px);
+			padding-right: 40px;
+		}
+
+		#logo
+		{
+			height: 120px;
+			width: 173px;
+			margin: auto;
+			padding: 50px 0 0;
+			position: relative;
+		}
+
+		.logo-steam
+		{
+			border-radius: 100%;
+			width: 5px;
+			height: 5px;
+			background: var(--grey-70);
+			position: absolute;
+			top: 95px;
+			left: 24px;
+		}
+
+		.logo-steam.one { animation: steam-odd 2s infinite 0.0s; }
+		.logo-steam.two { animation: steam-even 2s infinite 0.2s; }
+		.logo-steam.three { animation: steam-odd 2s infinite 0.4s; }
+		.logo-steam.four { animation: steam-even 2s infinite 0.6s; }
+		.logo-steam.five { animation: steam-odd 2s infinite 1.0s; }
+		.logo-steam.six { animation: steam-even 2s infinite 1.2s; }
+		.logo-steam.seven { animation: steam-odd 2s infinite 1.4s; }
+		.logo-steam.eight { animation: steam-even 2s infinite 1.6s; }
+		
+		@keyframes steam-even
+		{
+			to
+			{
+				transform: scale(5) translateX(5px) translateY(-8px);
+				opacity: 0;
+			}
+		}
+
+		@keyframes steam-odd
+		{
+			to
+			{
+				transform: scale(5) translateX(8px) translateY(-7px);
+				opacity: 0;
+			}
+		}
+
+		h1
+		{
+			font-family: "heading";
+			font-size: 6rem;
+			text-align: center;
+			margin: -30px 0 0;
+			line-height: 1;
+			font-weight: normal;
+			text-transform: uppercase
+		}
+		
+		#tagline
+		{
+			font-weight: bold;
+			max-width: 400px;
+			margin: 0 auto 80px;
+			text-align: center;
+		}
+
+		a.cta
+		{
+			display: block;
+			background: var(--accent);
+			border-radius: 12px;
+			max-width: 100%;
+			width: 150px;
+			padding: 10px 0;
+			text-align: center;
+			text-decoration: none;
+			color: inherit;
+			margin: 40px auto;
+			font-weight: bold;
+		}
+
+		a.cta:hover, a.cta:focus, a.cta:focus-within
+		{
+			background: var(--grey-40);
+		}
+
+		article
+		{
+			display: grid;
+			grid-template-columns: 80px auto 80px;
+			padding: 0 80px;
+			box-sizing: border-box;
+		}
+
+		article > *
+		{
+			grid-column: 2 / 3;
+		}
+
+		article img, article picture, .full
+		{
+			grid-column: 1 / -1;
+			border-radius: 12px;
+			width: 100%;
+			max-height: 800px;
+			object-fit: cover;
+			margin: 40px 0;
+		}
+
+		.full
+		{
+			max-height: none;
+			max-width: 1000px;
+			margin: 40px auto;
+			object-fit: none;
+			padding: 40px;
+			box-sizing: border-box;
+			background: var(--grey-20);
+		}
+
+		p
+		{
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 1.8;
+			opacity: 0.85;
+			letter-spacing: 0.03em;
+			max-width: 50rem;
+			margin: 1rem auto;
+		}
+
+		h2
+		{
+			width: 100%;
+			max-width: 50rem;
+			margin: 4rem auto 2rem;
+			font-size: 2.5rem;
+			font-family: "heading";
+			text-transform: uppercase;
+		}
+		 h3 {
+			width: 100%;
+			max-width: 50rem;
+			margin: 0.5rem auto 0.5rem;
+			font-family: "heading";
+		 }
+
+		footer
+		{
+			text-align: center;
+			margin: 8rem auto 2rem;
+			opacity: 0.6;
+			font-size: 12px;
+			letter-spacing: 0.03em;
+		}
+
+		@media screen and (max-width: 1190px)
+		{
+			nav
+			{
+				padding: 100px 60px;
+			}
+
+			nav a
+			{
+				font-size: 2.5rem;
+			}
+		}
+
+		@media screen and (max-width: 900px)
+		{
+			article
+			{
+				grid-template-columns: 40px auto 40px;
+				padding: 0 40px;
+			}
+		}
+
+		@media screen and (max-width: 600px)
+		{
+			article
+			{
+				grid-template-columns: 20px auto 20px;
+				padding: 0 20px;
+			}
+		}
+
+		@media screen and (max-width: 500px)
+		{
+			h1
+			{
+				font-size: 4rem;
+			}
+
+			article
+			{
+				grid-template-columns: 10px auto 10px;
+				padding: 0 10px;
+			}
+
+			nav
+			{
+				min-width: 0px;
+				width: 100%;
+				padding: 100px 40px;
+			}
+
+			nav a:hover, nav a:focus, nav a:focus-within
+			{
+				transform: translateX(0px);
+				width: 100%;
+				padding-right: 0px;
+			}
+		}
+	</style>
+</head>
+<body class="menu-closed">
+	<button id="menu-btn" tabindex="1" onclick="document.body.classList.toggle('menu-closed');">
+		<div id="menu-btn-text">
+			<span id="menu-text"><span>M</span><span>E</span><span>N</span><span>U</span></span>
+			<span id="close-text"><span>C</span><span>L</span><span>O</span><span>S</span><span>E</span></span>
+		</div>
+		<div id="menu-stack">
+			<div id="top-menu"></div>
+			<div id="mid-menu"></div>
+			<div id="bot-menu"></div>
+		</div>
+	</button>
+	<nav>
+		<ul>
+			<li><a href="#frame" onclick="document.body.classList.toggle('menu-closed')">THE FRAMING DEVICE</a></li>
+			<li><a href="#conductor" onclick="document.body.classList.toggle('menu-closed')">CREATING THE CONDUCTOR</a></li>
+			<li><a href="#character" onclick="document.body.classList.toggle('menu-closed')">CREATING A CHARACTER</a></li>
+			<li><a href="#mechanics" onclick="document.body.classList.toggle('menu-closed')">MECHANICS</a></li>
+			<li><a href="#coverting" onclick="document.body.classList.toggle('menu-closed')">CONVERTING TO GAMES</a></li>
+		</ul>
+	</nav>
+	<article onclick="document.body.className = 'menu-closed';">
+		<div id="logo">
+			<svg id="logo-svg" height="120" viewBox="0 0 173 120" width="173" xmlns="http://www.w3.org/2000/svg"><path d="m0 0h173v120h-173z" fill="none"/><g fill="#e9e1f9"><path id="logo-one" d="m34.69 19.658s0 0 0 0h-2.16s0 0 0 0a3 3 0 0 1 -6 0s0 0 0 0h-2.568s0 0 0 0a3 3 0 0 1 -6 0s0 0 0 0h-2.335v-.011h-2.1l-2.905.021v2.307l-10.622-.037 8.029-9.438v-3.318a1.953 1.953 0 0 1 1.637-1.955v-.027h4.1v-7.2h4.971v7.2h4.533v-2.022a3.32 3.32 0 1 1 6.64 0v2.022h4.412v-7.2h10.217v18.012h3.787v1.631h-4.7v.012h-2.933s0 0 0 0a3 3 0 0 1 -6 0z" transform="translate(10.373 49)"/><path id="logo-two" d="m28.3 20.66s0 0 0-.005h-1.15q0 .01 0 .021l-5.328-.005v-.005-.005s0 0 0 0h-1.1s0 0 0 0a3 3 0 0 1 -6 0s0 0 0 0h-1.266s0 0 0 .005l-4.017.015a.018.018 0 0 1 0-.007v-.014s0 0 0-.005h-1.259s0 0 0 .005a3 3 0 0 1 -6.006 0s0 0 0-.005h-.539v-2.368l-.035.053v-16.34h-1.6v-2h52v2h-1.747v17.012h4.422v1.648c0 .005-5.079 0-5.7 0h-.857s0 0 0-.005h-1.264s0 0 0 0a3 3 0 0 1 -6 0s0 0 0 0h-1.27s0 0 0 .005l-4.017.015v-.007a.031.031 0 0 0 0-.008s0 0 0-.005h-1.26s0 0 0 .005a3 3 0 0 1 -6.006 0zm13.7-14.16v2a1.5 1.5 0 1 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 1 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 1 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 1 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 1 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 1 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 0 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 1 0 3 0v-2a1.5 1.5 0 0 0 -3 0z" transform="translate(57 48)"/><path id="logo-three" d="m29.3 26.66s0 0 0-.005h-1.151q0 .01 0 .021l-5.328-.005v-.005-.005s0 0 0 0h-1.1s0 0 0 0a3 3 0 0 1 -6 0s0 0 0 0h-1.265s0 0 0 .005l-4.017.015a.025.025 0 0 1 0-.008v-.013s0 0 0-.005h-1.259s0 0 0 .005a3 3 0 0 1 -6.006 0s0 0 0-.005h-.569v-2.323l-.005.008v-16.34h-1.6v-2h52v2h-1.747v15.065h2.476v4.871h-2.477v-1.276h-2.137s0 0 0-.005h-1.261s0 0 0 0a3 3 0 0 1 -6 0s0 0 0 0h-1.27s0 0 0 .005l-4.017.015a.025.025 0 0 1 0-.008v-.007s0 0 0-.005h-1.26s0 0 0 .005a3 3 0 0 1 -6.006 0zm13.7-14.16v2a1.5 1.5 0 1 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 1 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 1 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 1 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 0 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 1 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 0 0 3 0v-2a1.5 1.5 0 0 0 -3 0zm-5 0v2a1.5 1.5 0 1 0 3 0v-2a1.5 1.5 0 0 0 -3 0z" transform="translate(109 42)"/></g></svg>
+			<div class="logo-steam one"></div>
+			<div class="logo-steam two"></div>
+			<div class="logo-steam three"></div>
+			<div class="logo-steam four"></div>
+			<div class="logo-steam five"></div>
+			<div class="logo-steam six"></div>
+			<div class="logo-steam seven"></div>
+			<div class="logo-steam eight"></div>
+		</div>
+		<h1>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 503.1 57.1">
+				<title>The Midnight Train</title>
+				<path fill="#fff" d="M21.2 7.7v34.9a.6.6 0 01-.7.7H12a.6.6 0 01-.8-.7v-35H2.6a.6.6 0 01-.8-.6V1.3a.6.6 0 01.8-.7h27.3a.6.6 0 01.7.7V7a.6.6 0 01-.7.7zM31.7 50a.6.6 0 01.8.8v5.6a.6.6 0 01-.8.7H.7a.6.6 0 01-.7-.7v-5.6a.6.6 0 01.7-.8zM62.2.6a.6.6 0 01.8.7v41.3a.6.6 0 01-.8.7h-8.5a.6.6 0 01-.8-.7v-19H45v19a.6.6 0 01-.7.7h-8.6a.6.6 0 01-.7-.7V1.3a.6.6 0 01.7-.7h8.6a.6.6 0 01.7.7v15.3h8V1.3a.6.6 0 01.7-.7zM67.1 50a.6.6 0 01.7.8v5.6a.6.6 0 01-.7.7H30.9a.6.6 0 01-.8-.7v-5.6a.6.6 0 01.8-.8zm26.1-7.4a.6.6 0 01-.7.7h-22a.6.6 0 01-.7-.7V1.3a.6.6 0 01.7-.7h22a.6.6 0 01.7.7V7a.6.6 0 01-.7.7H79.8v8.6h11a.6.6 0 01.8.8v5.6a.6.6 0 01-.7.7H79.8v12.8h12.7a.6.6 0 01.7.8zM96 50a.6.6 0 01.7.8v5.6a.6.6 0 01-.7.7H65.6a.6.6 0 01-.7-.7v-5.6a.6.6 0 01.7-.8zm34.3-24.6l6.1-24q.1-.8 1.2-.8h8.6a.6.6 0 01.7.7v41.3a.6.6 0 01-.7.7h-8.6a.6.6 0 01-.7-.7V25l-4 17.5a1 1 0 01-1 .7H126q-1 0-1-.7L121 25v17.5a.6.6 0 01-.7.7h-5.5a.6.6 0 01-.7-.7V1.3a.6.6 0 01.7-.7h8.3a1 1 0 011 .7zM151 50a.6.6 0 01.8.8v5.6a.6.6 0 01-.8.7h-41a.6.6 0 01-.8-.7v-5.6a.6.6 0 01.7-.8zM163 .6a.6.6 0 01.7.7v41.3a.6.6 0 01-.7.7h-8.6a.6.6 0 01-.7-.7V1.3a.6.6 0 01.7-.7zm4.8 49.4a.6.6 0 01.8.8v5.6a.6.6 0 01-.8.7h-18.2a.6.6 0 01-.8-.7v-5.6a.6.6 0 01.8-.8zM183 .6a25.4 25.4 0 015 .5 11.2 11.2 0 014.3 1.8 9.7 9.7 0 013 3.7 13 13 0 011.2 5.8v19a13 13 0 01-1.1 6 9.7 9.7 0 01-3 3.6 11.2 11.2 0 01-4.4 1.8 25.4 25.4 0 01-5 .5h-11.7a.6.6 0 01-.8-.7V1.3a.6.6 0 01.8-.7zm3.5 12q0-3-1-4a3.7 3.7 0 00-2.6-1h-2.4v28.6h2.4a3.7 3.7 0 002.6-1q1-1 1-3.8zm13 37.4a.6.6 0 01.8.8v5.6a.6.6 0 01-.7.7h-33.2a.6.6 0 01-.7-.7v-5.6a.6.6 0 01.7-.8zM225.2.6a.6.6 0 01.7.7v41.3a.6.6 0 01-.7.7H219a.9.9 0 01-.9-.6l-9-18.8v18.7a.6.6 0 01-.7.7h-5.6a.6.6 0 01-.8-.7V1.3a.6.6 0 01.8-.7h6a1 1 0 011 .6l9 18.8V1.3a.6.6 0 01.7-.7zM230 50a.6.6 0 01.7.8v5.6a.6.6 0 01-.7.7h-32.1a.6.6 0 01-.7-.7v-5.6a.6.6 0 01.7-.8zM241.8.6a.6.6 0 01.7.7v41.3a.6.6 0 01-.7.7h-8.5a.6.6 0 01-.8-.7V1.3a.6.6 0 01.8-.7zm4.9 49.4a.6.6 0 01.7.8v5.6a.6.6 0 01-.7.7h-18.3a.6.6 0 01-.7-.7v-5.6a.6.6 0 01.7-.8zm14.7-30.7a.6.6 0 01.8-.8h12.4a.6.6 0 01.8.8V38a1.8 1.8 0 01-.4 1 11.3 11.3 0 01-5.7 3.8 25 25 0 01-7.1 1 25.4 25.4 0 01-5-.5 10.6 10.6 0 01-4.3-1.8 10 10 0 01-3-3.7 13 13 0 01-1.1-5.8V11.8a13 13 0 011.1-5.8 10 10 0 013-3.7 10.6 10.6 0 014.3-1.8 25.4 25.4 0 015-.5 27.8 27.8 0 014.4.4 12.2 12.2 0 014.1 1.4 10.1 10.1 0 013.2 2.8 9.9 9.9 0 011.7 4.7q0 .7-.5.8l-8.3 2a.5.5 0 01-.6-.6 4.4 4.4 0 00-1.1-3.5 4.2 4.2 0 00-3-1 3.4 3.4 0 00-2.4 1q-1 1-1 3.8v20.3q0 3 1 3.8a3.4 3.4 0 002.5 1 10.3 10.3 0 001.7-.2 3.1 3.1 0 001.4-.7V25.6h-3.1a.6.6 0 01-.8-.7zM278.8 50a.6.6 0 01.7.8v5.6a.6.6 0 01-.7.7h-33.5a.6.6 0 01-.7-.7v-5.6a.6.6 0 01.7-.8zM308.9.6a.6.6 0 01.7.7v41.3a.6.6 0 01-.7.7h-8.5a.6.6 0 01-.8-.7v-19h-7.9v19a.6.6 0 01-.7.7h-8.6a.6.6 0 01-.7-.7V1.3a.6.6 0 01.7-.7h8.6a.6.6 0 01.7.7v15.3h8V1.3a.6.6 0 01.7-.7zm4.9 49.4a.6.6 0 01.7.8v5.6a.6.6 0 01-.7.7h-36.3a.6.6 0 01-.7-.7v-5.6a.6.6 0 01.7-.8zm19.4-42.3v34.9a.6.6 0 01-.7.7h-8.6a.6.6 0 01-.7-.7v-35h-8.7a.6.6 0 01-.7-.6V1.3a.6.6 0 01.7-.7h27.3a.6.6 0 01.8.7V7a.6.6 0 01-.8.7zM343.7 50a.6.6 0 01.7.8v5.6a.6.6 0 01-.7.7h-31a.6.6 0 01-.7-.7v-5.6a.6.6 0 01.7-.8zm38-42.3v34.9a.6.6 0 01-.8.7h-8.6a.6.6 0 01-.7-.7v-35H363a.6.6 0 01-.7-.6V1.3a.6.6 0 01.7-.7h27.4a.6.6 0 01.7.7V7a.6.6 0 01-.7.7zM392 50a.6.6 0 01.7.8v5.6a.6.6 0 01-.7.7h-31a.6.6 0 01-.7-.7v-5.6a.6.6 0 01.7-.8zM409.3.6a15.5 15.5 0 014 .6 9.4 9.4 0 013.8 2 9.8 9.8 0 012.6 3.6 14.8 14.8 0 011 5.8 12.3 12.3 0 01-1.6 6.6 11.6 11.6 0 01-3.7 3.7l7 19.4a2 2 0 01.2.6q0 .4-.5.4H413q-.5 0-.8-.6l-5.6-18.3h-1.2v18.2a.6.6 0 01-.7.7H396a.6.6 0 01-.7-.7V1.3a.6.6 0 01.7-.7zM407 17.3a3.6 3.6 0 002.7-1q1-1 1-3.7 0-3-1-4a3.6 3.6 0 00-2.7-1h-1.6v9.7zM423.5 50a.6.6 0 01.7.8v5.6a.6.6 0 01-.7.7h-32.2a.6.6 0 01-.8-.7v-5.6a.6.6 0 01.8-.8zm8.1-7.2a1 1 0 01-1 .6H425q-1 0-1-.7l11.3-41.5a.9.9 0 01.8-.6h6q.9 0 1 .6l11.2 41.5a.6.6 0 01-.7.7h-8.7a.9.9 0 01-.8-.6l-1.4-4.7H433zM438 19l-3 12h6zM455 50a.6.6 0 01.7.8v5.6a.6.6 0 01-.7.7h-31.8a.6.6 0 01-.7-.7v-5.6a.6.6 0 01.7-.8zM466.9.6a.6.6 0 01.7.7v41.3a.6.6 0 01-.7.7h-8.5a.6.6 0 01-.8-.7V1.3a.6.6 0 01.8-.7zm4.9 49.4a.6.6 0 01.7.8v5.6a.6.6 0 01-.7.7h-18.3a.6.6 0 01-.8-.7v-5.6a.6.6 0 01.8-.8zM497.5.6a.6.6 0 01.7.7v41.3a.6.6 0 01-.7.7h-6a.9.9 0 01-1-.6l-9-18.8v18.7a.6.6 0 01-.7.7h-5.6a.6.6 0 01-.7-.7V1.3a.6.6 0 01.7-.7h6a1 1 0 011 .6l9 18.8V1.3a.6.6 0 01.7-.7zm4.9 49.4a.6.6 0 01.7.8v5.6a.6.6 0 01-.7.7h-32a.6.6 0 01-.8-.7v-5.6a.6.6 0 01.7-.8z"/>
+			</svg>
+		</h1>
+		<p id="tagline">A framework for fluidly moving between game systems within a single narrative.</p>
+		
+        {{ content }}
+	
+		<footer>Goodbyte &copy; 2020</footer>
+	</article>
+</body>
+</html>
