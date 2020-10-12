@@ -2,324 +2,154 @@
 layout: main
 ---
 	<style>
-		@font-face
-		{
-			font-family: "title";
-			src: url('/assets/font/webfont-01.woff2') format('woff2'),
-				url('/assets/font/webfont-01.woff') format('woff'),
-				url('/assets/font/webfont-01.otf') format('opentype');
-			font-weight: bold;
-			font-style: normal;
-		}
-		@font-face
-		{
-			font-family: "title";
-			src: url('/assets/font/webfont-0.woff2') format('woff2'),
-				url('/assets/font/webfont-0.woff') format('woff'),
-				url('/assets/font/webfont-0.otf') format('opentype');
-			font-weight: normal;
-			font-style: normal;
-		}
-		@font-face
-		{
-			font-family: "text";
-			src: url('/assets/font/webfont-02.woff2') format('woff2'),
-				url('/assets/font/webfont-02.woff') format('woff'),
-				url('/assets/font/webfont-02.ttf') format('truetype');
-			font-weight: normal;
-			font-style: normal;
-		}
-		@font-face
-		{
-			font-family: "text";
-			src: url('/assets/font/webfont-03.woff2') format('woff2'),
-				url('/assets/font/webfont-03.woff') format('woff'),
-				url('/assets/font/webfont-03.ttf') format('truetype');
-			font-weight: bold;
-			font-style: normal;
-		}
-		:root
-		{
-			--black: #021201;
-			--white: #e7ffe6;
-			--grey-00: #041f03;
-			--grey-10: #024500;
-			--grey-20: #095e16;
-			--grey-30: #11782d;
-			--grey-40: #199243;
-			--grey-50: #20ac5a;
-			--grey-60: #28c670;
-			--grey-70: #a9efcb;
-			--accent: #30e087;
-			--card: #3f6b39;
-		}
-
-		html
-		{
-			background: #c1e6d2;
-			color: #009a50;
-			text-rendering: optimizeSpeed; 
-			-webkit-font-smoothing: antialiased;    
-			-moz-osx-font-smoothing: grayscale;
-			-moz-font-feature-settings:"kern" 1;
-			-ms-font-feature-settings:"kern" 1;
-			-o-font-feature-settings:"kern" 1;
-			-webkit-font-feature-settings:"kern" 1;
-			font-feature-settings:"kern" 1;
-			font-kerning: normal;
-			font-family: -apple-system, BlinkMacSystemFont, 'Futura', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-		}
-
-		::selection
-		{
-			background: var(--accent);
-			color: var(--grey-70);
-		}
-
 		body
 		{
 			margin: 0;
-			padding: 0;	
+			padding: 0;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			background-color: #009e48;
+			color: #a5dbbf;
+			font-family: "Adieu";
+			text-transform: uppercase;
 		}
-
+		
+		::selection
+		{
+			background: #49db7f;
+			color: #d7ebdf;
+		}
+		
+		a
+		{
+			text-decoration: none;
+			color: #d7ebdf;
+		}
+		
+		p
+		{
+			margin: 50px;
+			font-size: 1.3rem;
+			line-height: 1.6;
+		}
+		
 		article
 		{
-			padding: 0 80px;
-			font-family: 'text';
+			padding: 50px 0;
+			width: 100%;
+			min-height: 100vh;
+			background: linear-gradient(90deg, #a5dbbf, #009e48);
+			color: #08673b;
+			box-sizing: border-box;
+			overflow-x: hidden;
 		}
-
-		#logo
+		
+		ol, li
 		{
-			margin-right: auto;
-			margin-left: 40px;
-			padding-top: 100px;
-			position: fixed;
-			width: 200px;
-			bottom: 60px;
-			left: 40px;
-			transform: translate(0px, 0px);
-		}
-		#logo-over
-		{
-			z-index: 999;
-			position: absolute;
+			margin: 0;
+			padding: 0;
 			display: block;
-			top: 45px;
-			left: -40px;
-			padding: 10px;
-			width: 130%;
-			
-			
-		}
-		#container
-		{
-			display: grid;
-			grid-template-columns: auto 650px;			
-		}
-
-		.card
-		{
-			display: flex;
-			justify-content: space-between;
-			text-decoration: none;
-			color: #009a50;
-			/* background: #a4dbbf; */
-			/* background: #2b5a38; */
-			/* opacity: 0.15; */
-			border-radius: 30px;
-			padding: 20px;
-			margin-top: 50px;
-			/* box-shadow: 0 3px 6px 1.5px var(--black) */
-			/* box-shadow: 8px 8px 0 var(--grey-00);
-			border: 3px solid var(--grey-00); */
-			background-image: url(/assets/images/squiggle.svg);
-			background-size: auto 3px;
-    		background-repeat: repeat-x;
-    		background-position: 100% 100%;
-			padding-bottom: 10px;
-		}
-
-		.card:hover
-		{
-			background-image: url(/assets/images/squigglemoving.svg);
-
-		}
-		#game-list
-		{
-			padding: 0 100px;
-		}
-		#game-section
-		{
-			overflow-y: scroll;
-			grid-column: 2 / -1;
-		}
-
-		#description
-		{
-			position: fixed;
-			top: 0px; 
-			left: 50px;
-			width: 550px;
-			margin-top: 50px;
-			text-align: left;
-			font-size: 14pt;
-			font-weight: bold;
+			pointer-events: none;
 		}
 		
-		footer
+		article a
 		{
+			display: block;
+			color: inherit;
+			background: #a5dbbf;
+			font-size: 1.2rem;
 			text-align: center;
-			margin: 8rem auto 2rem;
-			opacity: 0.6;
-			font-size: 12px;
-			letter-spacing: 0.03em;
-		}
-		.arrow
-		{
-			opacity: 0;
-			padding: 40px 17px;
-			transition: 0.3s ease;
-			transform: translateX(-15px);
-		}
-
-		.card:hover .arrow
-		{
-			opacity: 1;
-			transition: 0.3s ease;
-			transform: translateX(0px);
-		}
-
-		.card h2
-		{
-			font-family: 'title';
-			font-weight: bold;
-		}
-
-		.card p
-		{
-			font-weight: 600;
-		}
-		#hero-contain
-		{
-			position: relative; 
-		}
-		#hero
-		{
-			position: absolute; 
-            bottom: 150px; 
+			padding: 1rem;
+			box-sizing: border-box;
+			text-decoration: none;
+			margin: 0 auto;
+			pointer-events: all;
+			transition: transform 0.3s cubic-bezier(0,1.5,.5,1);
 		}
 		
-		@media (max-width: 1500px) {
-			/* #description
-			{
-				width: 250px;
-			} */
+		article a:hover
+		{
+			transform: scale(1.2);
 		}
-		@media (max-width: 1210px) {
-			article
-			{
-				padding: 0 20px;
-			}
-			#description
-			{
-				width: 250px;
-				/* display: none; */
-			}
-			#game-list
-			{
-				padding: 0;
-			}
+		
+		article a::before
+		{
+			content: var(--i);
+			display: block;
 		}
-		@media (max-width: 1150px) {
-			#logo
-			{
-				width: 125px;
-			}
-			#logo-over
-			{
-				left: -29px;
-			}
+		
+		.box
+		{
+			padding-top: 30px;
+			width: 190px;
+			height: 150px;
 		}
-		@media (max-width: 950px) {
-			#description
-			{
-				display: none;
-			}
+		
+		.circle
+		{
+			width: 200px;
+			height: 200px;
+			border-radius: 100%;
+			padding-top: 65px;
 		}
-		@media (max-width: 860px) {
-			#logo
-			{
-				position: unset;
-				margin: auto;
-			}
-			#container
+		
+		.triangle
+		{
+			clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+			padding-top: 90px;
+			width: 210px;
+			height: 190px;
+		}
+		
+		@media screen and (max-width: 850px)
+		{
+			body
 			{
 				display: block;
+			}
+			
+			p
+			{
+				position: absolute;
+				top: 0;
+				font-size: 1.3rem;
+				margin: 0;
+				padding: 50px;
+				background: #009e48;
+			}
+			
+			article
+			{
+				padding-top: 300px;
+			}
+		}
+			
+		@media screen and (max-width: 550px)
+		{
+			p
+			{
+				font-size: 1rem;
+				padding: 20px;
+				background: linear-gradient(#009e48, transparent);
+				height: 300px;
+			}
+			
+			article
+			{
+				padding-top: 200px;
 			}
 		}
 	</style>
 </head>
 <body>
+	<p><a href="https://goodbyte.games">Goodbyte Games</a> is a byte-sized studio creating table-top rolepaying games and systems for people who like that sort of thing.</p>
 	<article>
-		<section id="description">
-			Goodbyte Games is a byte sized games studio with a goal of creating games & systems with fluid and immersive mechanics.
-		</section>
-		<div id="container">
-			<div id="logo">
-				<img src="/assets/images/GoodByteGames.svg" alt="Goodbyte Games Logo">
-				<svg id="logo-over" width="100%" height="100%" viewBox="0 0 550 450" version="1.1" xmlns="http://www.w3.org/2000/svg" overflow="auto">
-					<defs>
-				   <path id="square" d="M15 25 L 500 25 L 500 375 L 15 375 Z" stroke="black" fill="transparent" stroke-width="1"/>
-					</defs>
-					<text fill="#009a50" font-size="2.2em" font-familly="text" font-weight="bold">
-					  <textPath id="text-path" href="#square" startOffset="0">
-						SOMETIMES WE MAKE GAMES, WHEN WE DO THEY GO HERE
-						<!-- <animate attributeName="startOffset"
-								 from="0%" to ="100%"
-								 begin="scroll" dur="10s"
-								 repeatCount="1"/> -->
-					  </textPath>
-					</text>
-				  </svg>
-				  
-			</div>
-
-			<div id="game-section">
-			<section id="game-list">
-				{% for post in site.categories.games %}
-				<a href="{{ post.url }}" class="card">
-					<span>
-					<h2>{{ post.title }}</h2>
-					<p>{{ post.short }}</p>
-					</span>
-					<span class="arrow">
-						<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path stroke="#009a50" d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
-					</span>
-				</a>
-				{% endfor %}
-			</section>
-			</div>
-		</div>
-	
-		<footer>Goodbyte &copy; 2020</footer>
+		<ol>
+			{% for post in site.categories.games %}
+			<li style="--i: '{{ post.number }}.'; transform: translateX({{ post.shift }}) rotate({{ post.rotate }});">
+				<a class="{{ post.shape }}" href="{{ post.url }}">{{ post.title }}</a>
+			</li>
+			{% endfor %}
+		</ol>
 	</article>
-	<script>
-		var textPath = document.querySelector('#text-path');
-	  
-		function updatePathOffset(offset) {
-		  textPath.setAttribute('startOffset', offset);
-		}
-
-		function onScroll(){
-			requestAnimationFrame(function(){
-				updatePathOffset(window.scrollY * 1.5);
-			})
-		}
-		
-		
-		window.addEventListener('scroll', function(e) {
-			onScroll();
-		});
-
-	  </script>
 </body>
