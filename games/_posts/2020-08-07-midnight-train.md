@@ -1,8 +1,13 @@
 ---
 layout: midnight-train
-title: The Midnight Train
+number: 1
+title: Midnight Train
 author: Jack Guinane, Quinn Pollock
 short: Midnight Train is a framework for fluidly moving between game systems within a single narrative.
+
+shape: box
+shift: -20%
+rotate: 0deg
 ---
 
 There is an endless sea of TTRPG one-shots, rulesets, systems, and simply not enough time to try them all. To cut down on the time to set up, create a character, introduce the group, and begin a story, *Midnight Train* links different one-shots together into a longer, continuous game. It does so by providing two things: a narrative framing device and a set of accompanying mechanics. 
