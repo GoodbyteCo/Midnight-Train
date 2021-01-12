@@ -13,11 +13,7 @@ rotate: 10deg
 
 This is a game about witches. The setting is up to you; perhaps it is the 16th-century European countryside, 1980s’ New York City, or a biodome in the year 3005. No matter what you choose, two things are constant: you are a witch, and people hate witches.
 
----
-
-📝 [Download the character sheet (PDF)](https://github.com/qjack001/Witchcraft-RPG/blob/master/Witchcraft-Character-Sheet.pdf)
-
----
+{:#cta}[Download the character sheet (PDF)](/assets/Witchcraft/Witchcraft-Character-Sheet.pdf)
 
 > Note: this game is based on witches as portrayed in films (particularly Nietzchka Keene’s *[The Juniper Tree](https://letterboxd.com/film/the-juniper-tree/)* and Anna Biller’s *[The Love Witch](https://letterboxd.com/film/the-love-witch/)*). The rules and mechanics of the game bear little resemblance to Wiccan and Pagan culture, nor do they intend to.
 

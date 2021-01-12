@@ -17,12 +17,20 @@
 		html
 		{
 			background: #949494;
+
+			font-family: Georgia, 'Times New Roman', Times, serif;
+			line-height: 1.8;
+		}
+
+		::selection 
+		{
+			background: rgb(255 255 255 / 60%);
 		}
 		
 		#logo
 		{
 			display: block;
-			margin: 50px auto;
+			margin: 60px auto 100px;
 			opacity: 0.8;
 		}
 
@@ -30,7 +38,7 @@
 		{
 			#logo
 			{
-				transform: translateX(calc(50vw - 135px)) scale(0.5);
+				transform: translateX(calc(50vw - 164px)) scale(0.6);
 				transform-origin: left;
 				margin: 50px 0;
 			}
@@ -46,12 +54,12 @@
 			z-index: 999;
 
 			background-image: url("/assets/Witchcraft/images/noise.jpg");
-			background-size: contain;
+			background-size: 800px;
 			background-repeat: repeat;
 			
-			opacity: 0.09;
+			opacity: 0.08;
 			pointer-events: none;
-			animation: noise 3s steps(10) infinite;
+			animation: noise 7s steps(10) infinite;
 		}
 
 		@keyframes noise
@@ -70,14 +78,35 @@
 
 		p
 		{
-			max-width: 90ch;
+			max-width: 70ch;
 			margin: 3rem auto;
 			padding: 0 40px;
 			box-sizing: border-box;
 
-			font-family: Georgia, 'Times New Roman', Times, serif;
-			line-height: 1.4;
 			font-size: 1.1rem;
+		}
+
+		blockquote, blockquote p
+		{
+			font-size: 0.9rem;
+			font-style: italic;
+		}
+
+		#cta
+		{
+			display: block;
+			text-align: center;
+			max-width: 350px;
+			padding: 10px 15px;
+			box-sizing: border-box;
+			margin: 20px auto;
+
+			background: rgb(255 255 255 / 60%);
+		}
+
+		#cta:hover
+		{
+			background: rgb(255 255 255);
 		}
 	</style>
 </head>
