@@ -10,7 +10,154 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
-    
-    {{ content }}
+    <style>
+		@font-face
+		{
+			font-family: "sansserif";
+			src: url("/fonts/webfont.woff")  format('woff'),
+				url("/fonts/webfont.woff2") format('woff2');
+		}
 
-<html
+		body
+		{
+			margin: 0;
+			padding: 0;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			background-color: #009e48;
+			color: #a5dbbf;
+			font-family: "sansserif", monospace;
+			text-transform: uppercase;
+		}
+		
+		::selection
+		{
+			background: #49db7f;
+			color: #d7ebdf;
+		}
+		
+		a
+		{
+			text-decoration: none;
+			color: #d7ebdf;
+		}
+		
+		p
+		{
+			margin: 50px;
+			font-size: 1.3rem;
+			line-height: 1.6;
+		}
+		
+		article
+		{
+			padding: 50px 0;
+			width: 100%;
+			min-height: 100vh;
+			background: linear-gradient(90deg, #a5dbbf, #009e48);
+			color: #08673b;
+			box-sizing: border-box;
+			overflow-x: hidden;
+		}
+		
+		ol, li
+		{
+			margin: 0;
+			padding: 0;
+			display: block;
+			pointer-events: none;
+		}
+		
+		article a
+		{
+			display: block;
+			color: inherit;
+			background: #a5dbbf;
+			font-size: 1.2rem;
+			text-align: center;
+			padding: 1rem;
+			box-sizing: border-box;
+			text-decoration: none;
+			margin: 0 auto;
+			pointer-events: all;
+			transition: transform 0.3s cubic-bezier(0,1.5,.5,1);
+		}
+		
+		article a:hover
+		{
+			transform: scale(1.2);
+		}
+		
+		article a::before
+		{
+			content: var(--i);
+			display: block;
+		}
+		
+		.box
+		{
+			padding-top: 30px;
+			width: 190px;
+			height: 150px;
+		}
+		
+		.circle
+		{
+			width: 200px;
+			height: 200px;
+			border-radius: 100%;
+			padding-top: 65px;
+		}
+		
+		.triangle
+		{
+			clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+			padding-top: 90px;
+			width: 210px;
+			height: 190px;
+		}
+		
+		@media screen and (max-width: 850px)
+		{
+			body
+			{
+				display: block;
+			}
+			
+			p
+			{
+				position: absolute;
+				top: 0;
+				font-size: 1.3rem;
+				margin: 0;
+				padding: 50px;
+				background: #009e48;
+			}
+			
+			article
+			{
+				padding-top: 300px;
+			}
+		}
+			
+		@media screen and (max-width: 550px)
+		{
+			p
+			{
+				font-size: 1rem;
+				padding: 20px;
+				background: linear-gradient(#009e48, transparent);
+				height: 300px;
+			}
+			
+			article
+			{
+				padding-top: 200px;
+			}
+		}
+	</style>
+	</head>
+	<body>
+		{{ content }}
+	</body>
+</html>
