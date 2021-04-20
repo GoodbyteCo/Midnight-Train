@@ -13,12 +13,13 @@ rotate: 10deg
 
 This is a game about witches. The setting is up to you; perhaps it is the 16th-century European countryside, 1980s’ New York City, or a biodome in the year 3005. No matter what you choose, two things are constant: you are a witch, and people hate witches.
 
-{:#cta}[Download the character sheet (PDF)](/assets/Witchcraft/Witchcraft-Character-Sheet.pdf)
+{:#cta}
+[Download the character sheet (PDF)](/assets/Witchcraft/Witchcraft-Character-Sheet.pdf)
 
 > Note: this game is based on witches as portrayed in films (particularly Nietzchka Keene’s *[The Juniper Tree](https://letterboxd.com/film/the-juniper-tree/)* and Anna Biller’s *[The Love Witch](https://letterboxd.com/film/the-love-witch/)*). The rules and mechanics of the game bear little resemblance to Wiccan and Pagan culture, nor do they intend to.
 
 
-## 🕯 Standard Rules
+## 🕯 Standard Rules 🕯
 
 After agreeing on a setting and creating your characters, the GM will turn over three tarot cards to begin the game. The GM will interpret their meaning and use them as a guide to setting the opening scenario. If you do not own tarot cards, then the GM can simply begin the game like any other table-top RPG. The game works like most: the GM describes the situations, surroundings, and people you encounter, and you describe what you wish to do. There is no special “combat mode,” all actions can be taken at any time. 
 
@@ -35,7 +36,7 @@ The GM will weigh the result of your roll with the difficulty of the situation a
 Don’t worry too much about health, it isn’t really a part of the game. On occasion, your character may injure themselves, and the GM will instruct you to roll with disadvantage for actions that the injury interferes with. In the case of a severe injury, your character will need to seek immediate care to avoid death.
 
 
-## 🔮 Magic
+## 🔮 Magic 🔮
 
 As a witch, you are able to cast charms on other people (but not yourself). You can cast any charm at any time by rolling a **d8** and adding your `Influence` modifier. Similarly to non-magic actions, add a tick mark to your `Proficiency` stat when you fail. When you succeed, increase your `Influence` stat by **one**. However, successfully casting a charm does not ensure that its spell will take effect—you will not know whether or not the charm has had an impact. A list of charms can be found in the [Table of Charms](https://github.com/qjack001/Witchcraft-RPG#-table-of-charms) section.
 
@@ -48,7 +49,7 @@ Listed next to each path is a “higher level” spell. These spells are also av
 At an Influence of **21**, you are able to select a secondary path. These abilities work the same as your primary path, except that you must maintain an Influence of **21** or greater (rather than **13**) to use them.
 
 
-## 🧙‍♀️ Creating a Character
+## 🧙‍♀️ Creating a Character 🧙‍♀️
 
 Begin by [downloading the character sheet](https://github.com/qjack001/Witchcraft-RPG/blob/master/Witchcraft-Character-Sheet.pdf) and developing a concept for your character. Fill in their name and a description of what makes them unique. Under “Skill,” write a character-defining skill that they possess (which you will include your `Proficiency` modifier when doing). Make sure the skill is quite broad, such as “talking,” “fighting,” or “crafting tools.” Leave “Path” blank for now, you will fill it in later.
 
@@ -57,7 +58,7 @@ To determine your starting stats, roll a **d6** three times. Assign each roll to
 [An example of a filled-out character sheet (PNG)](https://paper-attachments.dropbox.com/s_2CCA2671FE06C3FFC2310FF8BC900CFA63C881A555DA4F7CB19FBDF54895DD95_1588818760213_image.png).
 
 
-## ✨ For the GM
+## ✨ For the GM ✨
 
 Many other manuals have done a much better job of describing how to be a successful Game Master, and I will not try to out-do them. In this game, story and character are more important than strictly following the ruleset, so treat them at your discretion so long as the players are having fun.
 
@@ -68,7 +69,8 @@ Similar to the tracking of player-alignment, when deciding how the magic they pu
 One of the main stories this game seeks to tell is that of being from a misunderstood and subsequently prosecuted community. Regardless of the era or specifics of the mythology, women have been stoned, burned, and drowned for engaging in witchcraft. In this game, it is important that a majority of the world fears witches, and would take similar action against the players if they were to find out. Every spell and charm cast should be at the risk of exposure, and present real danger. This is not the belief of everyone, however, as there will be those who understand, accept, or even are in need of witches.
 
 
-## 📖 Table of Charms
+## 📖 Table of Charms 📖
+
 | **Alignment** | **Charm**     | **Description**                                                        |
 | ------------- | ------------- | ---------------------------------------------------------------------- |
 | shadow        | anger         | ignites a feeling of anger                                             |
@@ -97,7 +99,7 @@ One of the main stories this game seeks to tell is that of being from a misunder
 
 
 
-## 📖 Table of Paths
+## 📖 Table of Paths 📖
 
 
 ### 🌕 Light
