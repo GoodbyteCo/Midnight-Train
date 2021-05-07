@@ -1,5 +1,6 @@
 ---
 layout: main
+---
 
 <p>
 	<a href="https://goodbyte.games">Goodbyte Games</a> is a byte-sized studio creating table-top rolepaying games and systems for people who like that sort of thing.
@@ -7,9 +8,7 @@ layout: main
 <article>
 	<ol>
 		{% for post in site.categories.games %}
-		<li style="--i: '{{ post.number }}.'; transform: translateX({{ post.shift }}) rotate({{ post.rotate }});">
-			<a class="{{ post.shape }}" href="{{ post.url }}">{{ post.title }}</a>
-		</li>
+		<li><a href="{{ post.url }}">{{ post.title }}<span class="desc">, {{ post.short }}.</span></a></li>
 		{% endfor %}
 	</ol>
 </article>

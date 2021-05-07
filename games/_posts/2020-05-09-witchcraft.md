@@ -1,13 +1,8 @@
 ---
 layout: witchcraft
-number: 2
 title: Witchcraft
 author: Jack Guinane
-short: "This is a game about witches. The setting is up to you, but two things are constant: you are a witch, and people hate witches."
-
-shape: circle
-shift: 20%
-rotate: 10deg
+short: A game about witches
 ---
 
 
